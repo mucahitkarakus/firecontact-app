@@ -4,7 +4,7 @@ import Table from "./components/table/Table"
 
 function App() {
   return (
-    <div className="App container mx-auto flex items-center justify-between mt-[30rem]">
+    <div className="App container mx-auto flex justify-between items-center h-full ">
       <Form />
       <Table />
     </div>

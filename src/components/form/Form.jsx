@@ -4,11 +4,11 @@ import {AiOutlineUser} from "react-icons/ai";
 
 const Form = () => {
   return (
-    <div className="flex flex-col mt-[15rem]">
+    <div className="flex flex-col ">
       <div className=" bg-white font-semibold text-center mb-5 w-[15rem] h-[4rem] rounded-lg ">
         <p className="flex justify-center items-center h-full">Add Contact</p>
       </div>
-      <div className="bg-white  w-[15rem] h-[17rem] rounded-lg ">
+      <div className="bg-white h-[17rem] rounded-lg ">
         <form action="" className="flex flex-col m-3  ">
           <div>
             <AiOutlineUser className="absolute ml-2 mt-2" />
