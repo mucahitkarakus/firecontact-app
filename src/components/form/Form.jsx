@@ -2,11 +2,16 @@ import React, {useState} from "react";
 import {BsFillTelephoneForwardFill} from "react-icons/bs";
 import {AiOutlineUser} from "react-icons/ai";
 
-const Form = () => {
-  const [userData, setUserData] = useState([]);
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [gender, setGender] = useState("");
+const Form = ({
+  userData,
+  name,
+  phone,
+  gender,
+  setUserData,
+  setName,
+  setPhone,
+  setGender,
+}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newUser = {
@@ -14,8 +19,9 @@ const Form = () => {
       phone,
       gender,
     };
+    setUserData([...userData, newUser]);
   };
-
+  console.log(userData);
   return (
     <div className="flex flex-col  ">
       <div className=" bg-white font-semibold text-center mb-5 w-[17rem] h-[4rem] rounded-lg ">
