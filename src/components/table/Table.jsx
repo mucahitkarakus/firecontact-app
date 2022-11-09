@@ -1,16 +1,41 @@
 import React from "react";
+import {AiTwotoneEdit, AiFillDelete} from "react-icons/ai";
+import {useState} from "react";
 
 const Table = () => {
+  const users = [
+    {
+      name: "topoğlu",
+      number: 156156156,
+      gender: "male",
+    },
+    {
+      name: "topoğlu",
+      number: 156156156,
+      gender: "male",
+    },
+    {
+      name: "topoğlu",
+      number: 156156156,
+      gender: "male",
+    },
+    {
+      name: "topoğlu",
+      number: 156156156,
+      gender: "male",
+    },
+  ];
+
   return (
     <div className="flex flex-col items-center justify-center">
       <div className="bg-slate-200 w-[40rem] h-[4rem] text-center rounded-lg">
-        <p className="flex justify-center items-center h-full font-semibold ">
+        <h1 className="flex justify-center items-center h-full font-semibold ">
           Contact
-        </p>
+        </h1>
       </div>
       <div className="mt-5 bg-slate-200 w-[40rem] flex items-center rounded-lg ">
-        <table className="w-full h-10 font-semibold text-center">
-          <tbody>
+        <table className="w-full h-10 text-center">
+          <thead className="text-center">
             <tr>
               {["Username", "Phone Number", "Gender", "Delete", "Edit"].map(
                 (item, idx) => (
@@ -18,6 +43,21 @@ const Table = () => {
                 )
               )}
             </tr>
+          </thead>
+          <tbody>
+            {users.map((user) => (
+              <tr className="bg-white text-center">
+                <td>{user.name}</td>
+                <td>{user.number}</td>
+                <td>{user.gender}</td>
+                <td>
+                  <AiFillDelete className="cursor-pointer" />
+                </td>
+                <td>
+                  <AiTwotoneEdit className="cursor-pointer" />
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
