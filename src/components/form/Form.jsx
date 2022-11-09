@@ -1,18 +1,34 @@
-import React from "react";
+import React, {useState} from "react";
 import {BsFillTelephoneForwardFill} from "react-icons/bs";
 import {AiOutlineUser} from "react-icons/ai";
 
 const Form = () => {
+  const [userData, setUserData] = useState([]);
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [gender, setGender] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newUser = {
+      name,
+      phone,
+      gender,
+    };
+  };
+
   return (
     <div className="flex flex-col  ">
       <div className=" bg-white font-semibold text-center mb-5 w-[17rem] h-[4rem] rounded-lg ">
         <p className="flex justify-center items-center h-full">Add Contact</p>
       </div>
       <div className="bg-white h-[17rem] rounded-lg ">
-        <form action="" className="flex flex-col m-3  ">
+        <form onSubmit={handleSubmit} className="flex flex-col m-3  ">
           <div>
             <AiOutlineUser className="absolute ml-2 mt-4" />
             <input
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
               type="text"
               placeholder="Name"
               className="border w-full pl-7 border-gray-300 outline-none h-[3rem]"
@@ -21,6 +37,9 @@ const Form = () => {
           <div className="relative flex items-center mt-5 ">
             <BsFillTelephoneForwardFill className="absolute ml-2" />
             <input
+              onChange={(e) => {
+                setPhone(e.target.value);
+              }}
               type="text"
               placeholder="Phone Number"
               className="border w-full pl-7 border-gray-300 outline-none h-[3rem]"
@@ -28,8 +47,9 @@ const Form = () => {
           </div>
 
           <select
-            name="Gender"
-            id="Gender"
+            onChange={(e) => {
+              setGender(e.target.value);
+            }}
             className="mt-5  border  border-gray-300 outline-none h-[3rem]"
           >
             <option selected disabled hidden>

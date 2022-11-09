@@ -39,12 +39,14 @@ const Table = () => {
             <tr>
               {["Username", "Phone Number", "Gender", "Delete", "Edit"].map(
                 (item, idx) => (
-                  <td key={idx}>{item}</td>
+                  <th className="p-3" key={idx}>
+                    {item}
+                  </th>
                 )
               )}
             </tr>
           </thead>
-          <tbody>
+          <tbody className="divide-y divide-gray-100">
             {users.map((user) => (
               <tr className="bg-white text-center">
                 <td>{user.name}</td>
