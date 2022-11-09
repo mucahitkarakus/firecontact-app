@@ -5,17 +5,17 @@ import {AiOutlineUser} from "react-icons/ai";
 const Form = () => {
   return (
     <div className="flex flex-col  ">
-      <div className=" bg-white font-semibold text-center mb-5 w-[15rem] h-[4rem] rounded-lg ">
+      <div className=" bg-white font-semibold text-center mb-5 w-[17rem] h-[4rem] rounded-lg ">
         <p className="flex justify-center items-center h-full">Add Contact</p>
       </div>
       <div className="bg-white h-[17rem] rounded-lg ">
         <form action="" className="flex flex-col m-3  ">
           <div>
-            <AiOutlineUser className="absolute ml-2 mt-2" />
+            <AiOutlineUser className="absolute ml-2 mt-4" />
             <input
               type="text"
               placeholder="Name"
-              className="border w-full pl-7 border-gray-300 outline-none h-[2rem] focus:bg-yellow-200"
+              className="border w-full pl-7 border-gray-300 outline-none h-[3rem]"
             />
           </div>
           <div className="relative flex items-center mt-5 ">
@@ -23,14 +23,14 @@ const Form = () => {
             <input
               type="text"
               placeholder="Phone Number"
-              className="border w-full pl-7 border-gray-300 outline-none h-[2rem] focus:bg-yellow-200"
+              className="border w-full pl-7 border-gray-300 outline-none h-[3rem]"
             />
           </div>
 
           <select
             name="Gender"
             id="Gender"
-            className="mt-5 border  border-gray-300 outline-none h-[2rem]"
+            className="mt-5  border  border-gray-300 outline-none h-[3rem]"
           >
             <option selected disabled hidden>
               Gender
