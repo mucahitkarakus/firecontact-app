@@ -26,6 +26,11 @@ const Table = () => {
     },
   ];
 
+  const [deleteBtn, setDeleteBtn] = useState(true);
+  const deleteButton = (prev) => {
+    setDeleteBtn((prev) => !prev);
+  };
+
   return (
     <div className="flex flex-col items-center justify-center">
       <div className="bg-slate-200 w-[40rem] h-[4rem] text-center rounded-lg">
@@ -53,7 +58,10 @@ const Table = () => {
                 <td>{user.number}</td>
                 <td>{user.gender}</td>
                 <td>
-                  <AiFillDelete className="cursor-pointer" />
+                  <AiFillDelete
+                    onClick={deleteButton}
+                    className="cursor-pointer"
+                  />
                 </td>
                 <td>
                   <AiTwotoneEdit className="cursor-pointer" />

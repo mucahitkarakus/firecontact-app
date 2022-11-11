@@ -4,11 +4,5 @@
 
 
 body {
-    background-image: url("https://picsum.photos/1600/900");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    width: 100vw;
-    height: 100vh;
-
+    background-color: greenyellow;
 }

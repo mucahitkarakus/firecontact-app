@@ -1,77 +1,64 @@
-import React, {useState} from "react";
-import {BsFillTelephoneForwardFill} from "react-icons/bs";
+import React from "react";
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import InputAdornment from "@mui/material/InputAdornment";
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import {BsFillTelephoneFill} from "react-icons/bs";
 import {AiOutlineUser} from "react-icons/ai";
 
-const Form = ({
-  userData,
-  name,
-  phone,
-  gender,
-  setUserData,
-  setName,
-  setPhone,
-  setGender,
-}) => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newUser = {
-      name,
-      phone,
-      gender,
-    };
-    setUserData([...userData, newUser]);
-  };
-  console.log(userData);
+const Form = () => {
   return (
-    <div className="flex flex-col  ">
-      <div className=" bg-white font-semibold text-center mb-5 w-[17rem] h-[4rem] rounded-lg ">
-        <p className="flex justify-center items-center h-full">Add Contact</p>
-      </div>
-      <div className="bg-white h-[17rem] rounded-lg ">
-        <form onSubmit={handleSubmit} className="flex flex-col m-3  ">
-          <div>
-            <AiOutlineUser className="absolute ml-2 mt-4" />
-            <input
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
-              type="text"
-              placeholder="Name"
-              className="border w-full pl-7 border-gray-300 outline-none h-[3rem]"
-            />
-          </div>
-          <div className="relative flex items-center mt-5 ">
-            <BsFillTelephoneForwardFill className="absolute ml-2" />
-            <input
-              onChange={(e) => {
-                setPhone(e.target.value);
-              }}
-              type="text"
-              placeholder="Phone Number"
-              className="border w-full pl-7 border-gray-300 outline-none h-[3rem]"
-            />
-          </div>
+    <form className=" w-[20rem] rounded h-[22rem] items-center ">
+      <Typography variant="h4" component="h3" className="text-[#1976D2]">
+        New Contact
+      </Typography>
 
-          <select
-            onChange={(e) => {
-              setGender(e.target.value);
-            }}
-            className="mt-5  border  border-gray-300 outline-none h-[3rem]"
+      <AiOutlineUser className="absolute ml-1 mt-[35px]" />
+      <TextField
+        fullWidth
+        id="margin-none"
+        margin="normal"
+        InputProps={{
+          startAdornment: <InputAdornment position="start"></InputAdornment>,
+        }}
+        required
+      />
+      <BsFillTelephoneFill className="absolute ml-1 mt-[35px]" />
+      <TextField
+        fullWidth
+        id="margin-dense"
+        margin="normal"
+        InputProps={{
+          startAdornment: <InputAdornment position="start"></InputAdornment>,
+        }}
+        required
+        type="tel"
+      />
+
+      <Box sx={{minWidth: 120, marginTop: "1rem"}}>
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Gender</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            label="Gender"
           >
-            <option selected disabled hidden>
-              Gender
-            </option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-          </select>
-
-          <button className="bg-blue-300 mt-[2rem] border-none  h-10 border-black rounded-lg ">
-            Add
-          </button>
-        </form>
-      </div>
-    </div>
+            <MenuItem value="male">Male</MenuItem>
+            <MenuItem value="female">Female</MenuItem>
+            <MenuItem value="other">Other</MenuItem>
+          </Select>
+        </FormControl>
+      </Box>
+      <br />
+      <Button className="w-[150px]" variant="contained" type="submit">
+        ADD
+      </Button>
+    </form>
   );
 };
 
