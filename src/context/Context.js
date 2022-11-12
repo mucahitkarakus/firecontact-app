@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { ref , push, set, onValue, remove } from "firebase/database";
+import { ref , push, set, onValue, remove, update } from "firebase/database";
 import {db} from "../components/utils/firebase"
 
 
@@ -30,17 +30,31 @@ export const ContextProvider = ({children}) => {
             };
             setUserData([...userData, newContact]);
             saveToDatabase(newContact)
+        } else {
+            saveToDatabase();
+            
         }
     }
 
     //Firebase
 
     const saveToDatabase = (item) => {
-        const userRef = ref(db, "Contact");
-        const newUserRef = push(userRef);
-        set(newUserRef, {
-            ...item
-        })
+        if(!isUpdate){
+            const userRef = ref(db, "Contact");
+            const newUserRef = push(userRef);
+            set(newUserRef, {
+                ...item
+            });
+            
+        }
+        else {
+            update(ref(db, "Contact/" + storageUserData.id),{
+                userName,
+                phoneNumber,
+                gender
+            } )
+            setIsUpdate(false);
+        }
     }
     useEffect(() => {
         const userRef = ref(db, "Contact");
@@ -61,7 +75,8 @@ export const ContextProvider = ({children}) => {
         setUserName(item.userName);
         setPhoneNumber(item.phoneNumber);
         setGender(item.gender);
-        setIsUpdate(true)
+        setIsUpdate(true);
+        setStorageUserData(item)
     }
 
     //Delete
