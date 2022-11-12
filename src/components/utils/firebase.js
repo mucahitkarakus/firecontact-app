@@ -9,7 +9,7 @@ import {getDatabase} from "firebase/database"
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-  databaseURL: "https://contact-app-79e2f-default-rtdb.europe-west1.firebasedatabase.app/"
+  databaseURL: "https://contact-app-79e2f-default-rtdb.europe-west1.firebasedatabase.app/",
   projectId: process.env.REACT_APP_PROJECT_ID,
   storageBucket: "contact-app-79e2f.appspot.com",
   messagingSenderId: "315694816926",

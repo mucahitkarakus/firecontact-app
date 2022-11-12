@@ -1,4 +1,8 @@
 import { createContext, useEffect, useState } from "react";
+import { ref , push, set, onValue } from "firebase/database";
+import {db} from "../components/utils/firebase"
+
+
 
 export const Context = createContext()
 
@@ -23,12 +27,32 @@ export const ContextProvider = ({children}) => {
             phoneNumber,
             gender,
         };
-        setUserData([...userData, newContact])
+        setUserData([...userData, newContact]);
+        saveToDatabase(newContact)
     }
 
 
+    //Firebase
 
-
+    const saveToDatabase = (item) => {
+        const userRef = ref(db, "Contact");
+        const newUserRef = push(userRef);
+        set(newUserRef, {
+            ...item
+        })
+    }
+    useEffect(() => {
+        const userRef = ref(db, "Contact");
+        onValue(userRef, (details) => {
+            const data = details.val();
+            const contactArr = [];
+            for ( let id in data){
+                contactArr.push({id, ...data[id]});
+            }
+            setUserData(contactArr)
+        })
+    }, [])
+    
 
     return (
         <Context.Provider
