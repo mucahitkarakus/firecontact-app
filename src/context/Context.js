@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { ref , push, set, onValue } from "firebase/database";
+import { ref , push, set, onValue, remove } from "firebase/database";
 import {db} from "../components/utils/firebase"
 
 
@@ -52,6 +52,13 @@ export const ContextProvider = ({children}) => {
             setUserData(contactArr)
         })
     }, [])
+
+    //Delete
+
+
+    const deleteDatabaseData = (item) => {
+        remove(ref(db, "Contact/" + item.id))
+    }
     
 
     return (
@@ -67,7 +74,8 @@ export const ContextProvider = ({children}) => {
             setUserData,
             isUpdate,
             setIsUpdate,
-            handleFormSubmit
+            handleFormSubmit,
+            deleteDatabaseData
         }}
         >
             {children}
