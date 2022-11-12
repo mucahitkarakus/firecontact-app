@@ -15,6 +15,21 @@ export const ContextProvider = ({children}) => {
     //UserData
     const [userData, setUserData] = useState([])
 
+    //Func Section
+    const handleFormSubmit = (e) =>{
+        e.preventDefault();
+        const newContact = {
+            userName,
+            phoneNumber,
+            gender,
+        };
+        setUserData([...userData, newContact])
+    }
+
+
+
+
+
     return (
         <Context.Provider
         value={{
@@ -27,7 +42,8 @@ export const ContextProvider = ({children}) => {
             userData,
             setUserData,
             isUpdate,
-            setIsUpdate
+            setIsUpdate,
+            handleFormSubmit
         }}
         >
             {children}
