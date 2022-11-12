@@ -1,64 +1,62 @@
-import React from "react";
-import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import InputAdornment from "@mui/material/InputAdornment";
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import {BsFillTelephoneFill} from "react-icons/bs";
-import {AiOutlineUser} from "react-icons/ai";
-
+import React, {useContext} from "react";
+import {Context} from "../../context/Context";
 const Form = () => {
+  const {
+    handleFormSubmit,
+    setUserName,
+    setPhoneNumber,
+    setGender,
+    userName,
+    phoneNumber,
+    gender,
+    isUpdate,
+  } = useContext(Context);
   return (
-    <form className=" w-[20rem] rounded h-[22rem] items-center ">
-      <Typography variant="h4" component="h3" className="text-[#1976D2]">
-        New Contact
-      </Typography>
-
-      <AiOutlineUser className="absolute ml-1 mt-[35px]" />
-      <TextField
-        fullWidth
-        id="margin-none"
-        margin="normal"
-        InputProps={{
-          startAdornment: <InputAdornment position="start"></InputAdornment>,
-        }}
-        required
-      />
-      <BsFillTelephoneFill className="absolute ml-1 mt-[35px]" />
-      <TextField
-        fullWidth
-        id="margin-dense"
-        margin="normal"
-        InputProps={{
-          startAdornment: <InputAdornment position="start"></InputAdornment>,
-        }}
-        required
-        type="tel"
-      />
-
-      <Box sx={{minWidth: 120, marginTop: "1rem"}}>
-        <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Gender</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            label="Gender"
-          >
-            <MenuItem value="male">Male</MenuItem>
-            <MenuItem value="female">Female</MenuItem>
-            <MenuItem value="other">Other</MenuItem>
-          </Select>
-        </FormControl>
-      </Box>
-      <br />
-      <Button className="w-[150px]" variant="contained" type="submit">
-        ADD
-      </Button>
-    </form>
+    <div className="bg-gray-400 w-[20rem] h-[21rem] rounded">
+      <div className="flex flex-col justify-center items-center">
+        <p className="mt-4 text-2xl border-b-2">Add Contact</p>
+        <form
+          className="flex flex-col justify-center items-center my-10 space-y-5"
+          onSubmit={handleFormSubmit}
+        >
+          <div>
+            <input
+              className="px-5 py-2 rounded outline-none focus:bg-gray-200"
+              placeholder="Enter username"
+              onChange={(e) => setUserName(e.target.value)}
+              value={userName}
+              required
+            />
+          </div>
+          <div>
+            <input
+              className="px-5 py-2 rounded outline-none focus:bg-gray-200"
+              placeholder="Enter phonenumber"
+              onChange={(e) => setPhoneNumber(e.target.value)}
+              value={phoneNumber}
+              required
+            />
+          </div>
+          <div className="w-full">
+            <select
+              className="px-5 py-2 w-full rounded outline-none focus:bg-gray-200"
+              onChange={(e) => setGender(e.target.value)}
+              value={gender ? gender : 0}
+              required
+            >
+              <option hidden disabled value="0">
+                Select Gender
+              </option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
+          <button className="bg-blue-500 px-5 py-2 rounded-lg hover:bg-blue-300 duration-300">
+            {isUpdate ? "Update User" : "Add User"}
+          </button>
+        </form>
+      </div>
+    </div>
   );
 };
 

@@ -2,7 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-
-body {
-    background-color: greenyellow;
+.app {
+    background: linear-gradient(rgba(255, 255, 255, 0.5),
+            rgba(255, 255, 255, 0.5)),
+        url("https://images.pexels.com/photos/10386739/pexels-photo-10386739.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    background-size: cover;
+    height: 100vh;
 }

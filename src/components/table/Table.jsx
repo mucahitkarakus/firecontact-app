@@ -1,76 +1,54 @@
-import React from "react";
-import {AiTwotoneEdit, AiFillDelete} from "react-icons/ai";
-import {useState} from "react";
+import React, {useContext} from "react";
+import {Context} from "../../context/Context";
+import {AiFillDelete, AiFillEdit} from "react-icons/ai";
 
 const Table = () => {
-  const users = [
-    {
-      name: "topoğlu",
-      number: 156156156,
-      gender: "male",
-    },
-    {
-      name: "topoğlu",
-      number: 156156156,
-      gender: "male",
-    },
-    {
-      name: "topoğlu",
-      number: 156156156,
-      gender: "male",
-    },
-    {
-      name: "topoğlu",
-      number: 156156156,
-      gender: "male",
-    },
-  ];
-
-  const [deleteBtn, setDeleteBtn] = useState(true);
-  const deleteButton = (prev) => {
-    setDeleteBtn((prev) => !prev);
-  };
-
+  const {userData, deleteDatabaseData, handleUpdate} = useContext(Context);
   return (
-    <div className="flex flex-col items-center justify-center">
-      <div className="bg-slate-200 w-[40rem] h-[4rem] text-center rounded-lg">
-        <h1 className="flex justify-center items-center h-full font-semibold ">
-          Contact
-        </h1>
-      </div>
-      <div className="mt-5 bg-slate-200 w-[40rem] flex items-center rounded-lg ">
-        <table className="w-full h-10 text-center">
-          <thead className="text-center">
-            <tr>
-              {["Username", "Phone Number", "Gender", "Delete", "Edit"].map(
-                (item, idx) => (
-                  <th className="p-3" key={idx}>
-                    {item}
-                  </th>
-                )
-              )}
+    <div className="overflow-auto rounded-lg bg-gray-400 p-5">
+      <p className="text-center text-2xl mb-4 text-white border-b-2">
+        Contact Table
+      </p>
+      <table className="w-full">
+        <thead>
+          <tr>
+            {["username", "phone number", "gender", "delete", "edit"].map(
+              (item, idx) => (
+                <th
+                  key={idx}
+                  className="capitalize p-3 font-semibold bg-gray-200"
+                >
+                  {item}
+                </th>
+              )
+            )}
+          </tr>
+        </thead>
+        <tbody>
+          {userData.map((item, idx) => (
+            <tr
+              key={idx}
+              className="bg-white hover:bg-gray-500 hover:text-white duration-100"
+            >
+              <td className="p-2">{item.userName}</td>
+              <td>{item.phoneNumber}</td>
+              <td>{item.gender}</td>
+              <td
+                className="cursor-pointer"
+                onClick={() => deleteDatabaseData(item)}
+              >
+                <AiFillDelete className="text-xl" />
+              </td>
+              <td className="cursor-pointer">
+                <AiFillEdit
+                  className="text-xl"
+                  onClick={() => handleUpdate(item)}
+                />
+              </td>
             </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-100">
-            {users.map((user) => (
-              <tr className="bg-white text-center">
-                <td>{user.name}</td>
-                <td>{user.number}</td>
-                <td>{user.gender}</td>
-                <td>
-                  <AiFillDelete
-                    onClick={deleteButton}
-                    className="cursor-pointer"
-                  />
-                </td>
-                <td>
-                  <AiTwotoneEdit className="cursor-pointer" />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
